@@ -1,10 +1,10 @@
 const OpenLink = ({ redirectURL, LogoImage }) => {
     return (
-        <div>
+        <span>
             <a href={ redirectURL } target="_blank">
                 <img src={ LogoImage } className="logo" alt="Logo"/>
             </a>
-        </div>
+        </span>
     );
 };
 
