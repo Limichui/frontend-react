@@ -1,12 +1,15 @@
 import './App.css'
-import Default from './components/Default'
+import Logo from './components/home/Logo.jsx'
+import Body from './components/home/Body.jsx'
+import Footer from './components/home/Footer.jsx'
 
 
 function App() {
-  
   return (
     <>
-      <Default />
+      <Logo></Logo>
+      <Body></Body>
+      <Footer></Footer>
     </>
   )
 }
