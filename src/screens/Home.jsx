@@ -3,8 +3,7 @@ import OpenLink from '../components/core/OpenLink.jsx';
 
 import Body from '../components/Home/Body.jsx';
 import Footer from '../components/Home/Footer.jsx';
-import { useSelector, useDispatch } from 'react-redux'
-import { decrement, increment } from '../store/features/counter/counterSlice.js'
+import { useSelector } from 'react-redux'
 
 import viteLogo from "../assets/vite.svg"
 import reactLogo from "../assets/react.svg"
@@ -31,7 +30,7 @@ const Home = () => {
             <Body />
             <Footer />
         </div>
-    );b
+    );
 };
 
 export default Home;
