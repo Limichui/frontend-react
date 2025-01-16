@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-const About = () =>  {
+const About = () => {
     // Los hooks en react son funciones ya definidas
     // hooks siempre tienen el prefijo use
     // hook useState, use Effect, useContext, useRef, useTransition
