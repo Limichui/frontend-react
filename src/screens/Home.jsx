@@ -1,8 +1,8 @@
 //import Logo from '../components/Home/Logo.jsx';
 import OpenLink from '../components/core/OpenLink.jsx';
 
-import Body from '../components/Home/Body.jsx';
-import Footer from '../components/Home/Footer.jsx';
+import Body from '../components/home/Body.jsx';
+import Footer from '../components/home/Footer.jsx';
 import { useSelector } from 'react-redux'
 
 import viteLogo from "../assets/vite.svg"
