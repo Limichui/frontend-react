@@ -48,17 +48,17 @@ const FormWithMotionAndHook = ({titleForm}) => {
                     animate={{x: 0}}
                     transition={{duration: 0.5}}
                 >
-                    <div>
-                        <label>
-                            Username:
-                            <input
-                                type="text"
-                                name="username"
-                                value={formData.username}
-                                onChange={handleChange}
-                                required
-                            />
-                        </label>
+                    <div className="div-form">
+                        <label className="label-form">Module:</label>
+                        <input className="input-form"
+                            type="text"
+                            name="module"
+                            value={formData.module}
+                            onChange={handleChange}
+                            required
+                            disabled
+                        />
+                        
                     </div>
                 </motion.div>
                 <motion.div
@@ -66,17 +66,48 @@ const FormWithMotionAndHook = ({titleForm}) => {
                     animate={{x: 0}}
                     transition={{duration: 0.5}}
                 >
-                    <div>
-                        <label>
-                            Email:
-                            <input
-                                type="email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                required
-                            />
-                        </label>
+                    <div className="div-form">
+                        <label className="label-form">Username:</label>
+                        <input className="input-form"
+                            type="text"
+                            name="username"
+                            value={formData.username}
+                            onChange={handleChange}
+                            required
+                        />
+                        
+                    </div>
+                </motion.div>
+                <motion.div
+                    initial={{x: -100}}
+                    animate={{x: 0}}
+                    transition={{duration: 0.5}}
+                >
+                    <div className="div-form">
+                        <label className="label-form">Email:</label>
+                        <input className="input-form"
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                </motion.div>
+                <motion.div
+                    initial={{x: -100}}
+                    animate={{x: 0}}
+                    transition={{duration: 0.5}}
+                >
+                    <div className="div-form">
+                        <label className="label-form">Password:</label>
+                        <input className="input-form"
+                            type="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            required
+                        />
                     </div>
                 </motion.div>
                 <motion.div
@@ -84,7 +115,7 @@ const FormWithMotionAndHook = ({titleForm}) => {
                     animate={{y: 0}}
                     transition={{duration: 0.5}}
                 >
-                    <button type="submit">Enviar</button>
+                    <button className="button-form" type="submit">Login</button>
                 </motion.div>
             </form>
         </motion.div>
