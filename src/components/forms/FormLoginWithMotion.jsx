@@ -17,8 +17,9 @@ const FormWithMotionAndHook = ({titleForm}) => {
     const [showModal, setShowModal] = useState(false);
     const [modalMessage, setModalMessage] = useState(""); // Estado para almacenar el mensaje del modal.
     const [isSuccess, setIsSuccess] = useState(false); // Estado para controlar si la validación fue exitosa
-    const [isButtonVisible, setIsButtonVisible] = useState(true); // Estado para controlar visibilidad del botón
     const [inputsDisabled, setInputsDisabled] = useState(false); // Estado para controlar si los inputs están deshabilitados
+    const [showPassword, setShowPassword] = useState(false); // Estado para controlar la visibilidad de la contraseña
+    
 
     const dispatch = useDispatch(); // Inicializar el hook useDispatch
     const initialValueForm  = useSelector((state) => state.form);
@@ -33,7 +34,6 @@ const FormWithMotionAndHook = ({titleForm}) => {
                 email: formData.email
             }));
             setModalMessage(`Bienvenido: ${formData.username}`);
-            setIsButtonVisible(false); // Ocultar el botón paar que no vuelva a hacer clic
             setInputsDisabled(true); // Deshabilitar los inputs para que no cambie el contenido de cada input
             setIsSuccess(true); // Indica que la validación fue exitosa
         } else {
@@ -48,7 +48,9 @@ const FormWithMotionAndHook = ({titleForm}) => {
         setShowModal(false);
     }
 
-    
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
 
     return (
         <motion.div
@@ -129,30 +131,36 @@ const FormWithMotionAndHook = ({titleForm}) => {
                 >
                     <div className="div-form">
                         <label className="label-form">Password:</label>
-                        <input className="input-form"
-                            type="password"
+                        <input className="input-form input-password"
+                            type={showPassword ? "text" : "password"}
                             name="password"
                             value={formData.password}
                             onChange={handleChange}
                             required
                             disabled={inputsDisabled} 
                         />
+                        <button
+                            type="button"
+                            className="button-password"
+                            onClick={togglePasswordVisibility}
+                        >
+                                {showPassword ? "Hide" : "Show"}
+                        </button>
                     </div>
                 </motion.div>
-                {isButtonVisible && ( // Renderiza el botón solo si isButtonVisible es true
-                    <motion.div
-                        initial={{ y: 100 }}
-                        animate={{ y: 0 }}
-                        transition={{ duration: 0.5 }}
+                <motion.div
+                    initial={{ y: 100 }}
+                    animate={{ y: 0 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    <button
+                        className="button-form"
+                        type="submit"
+                        disabled={inputsDisabled}
                     >
-                        <button
-                            className="button-form"
-                            type="submit"
-                        >
-                            Login
-                        </button>
-                    </motion.div>
-                )}
+                        Login
+                    </button>
+                </motion.div>
             </form>
         </motion.div>
     );
