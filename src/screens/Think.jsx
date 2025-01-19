@@ -4,7 +4,7 @@ const Think = () => {
     const [nameComponenent] = useState('Think');
     return (
         <>
-        <p>Componente: {nameComponenent}</p>prod
+        <p>Componente: {nameComponenent}</p>
         </>
     );
 };
