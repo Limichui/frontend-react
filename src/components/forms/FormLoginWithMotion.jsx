@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { motion } from "motion/react";
+import { setInitialValue } from "../../store/features/form/formSlice.js";
 import useForm from "../hooks/useForm.js";
 import ModalInfo from "../../components/modals/ModalInfo.jsx";
 
@@ -14,19 +15,40 @@ const FormWithMotionAndHook = ({titleForm}) => {
     });
 
     const [showModal, setShowModal] = useState(false);
+    const [modalMessage, setModalMessage] = useState(""); // Estado para almacenar el mensaje del modal.
+    const [isSuccess, setIsSuccess] = useState(false); // Estado para controlar si la validación fue exitosa
+    const [isButtonVisible, setIsButtonVisible] = useState(true); // Estado para controlar visibilidad del botón
+    const [inputsDisabled, setInputsDisabled] = useState(false); // Estado para controlar si los inputs están deshabilitados
+
+    const dispatch = useDispatch(); // Inicializar el hook useDispatch
+    const initialValueForm  = useSelector((state) => state.form);
+    console.log(initialValueForm);
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (initialValueForm.formData.password === formData.password) {
+            dispatch(setInitialValue({
+                ...initialValueForm.formData,
+                username: formData.username,
+                email: formData.email
+            }));
+            setModalMessage(`Bienvenido: ${formData.username}`);
+            setIsButtonVisible(false); // Ocultar el botón paar que no vuelva a hacer clic
+            setInputsDisabled(true); // Deshabilitar los inputs para que no cambie el contenido de cada input
+            setIsSuccess(true); // Indica que la validación fue exitosa
+        } else {
+            setModalMessage("Username/Password incorrectos!!!.");
+            setIsSuccess(false); // Indica que la validación no fue exitosa
+        }
+
         setShowModal(true);
-        //console.log('datos del formulario', formData);
     };
 
     const onCloseModalInfo = () => {
         setShowModal(false);
     }
 
-    const initialValueForm  = useSelector((state) => state.form);
-    //console.log(initialValueForm);
+    
 
     return (
         <motion.div
@@ -37,8 +59,9 @@ const FormWithMotionAndHook = ({titleForm}) => {
         >
             <ModalInfo 
                 visible={showModal}
-                message="Formulario enviado!!!"
+                message={modalMessage} 
                 onClose={onCloseModalInfo}
+                isSuccess={isSuccess} 
             />
             <form onSubmit={handleSubmit}>
                 <motion.div
@@ -77,6 +100,7 @@ const FormWithMotionAndHook = ({titleForm}) => {
                             value={formData.username}
                             onChange={handleChange}
                             required
+                            disabled={inputsDisabled}
                         />
                         
                     </div>
@@ -94,6 +118,7 @@ const FormWithMotionAndHook = ({titleForm}) => {
                             value={formData.email}
                             onChange={handleChange}
                             required
+                            disabled={inputsDisabled} 
                         />
                     </div>
                 </motion.div>
@@ -110,16 +135,24 @@ const FormWithMotionAndHook = ({titleForm}) => {
                             value={formData.password}
                             onChange={handleChange}
                             required
+                            disabled={inputsDisabled} 
                         />
                     </div>
                 </motion.div>
-                <motion.div
-                    initial={{y: 100}}
-                    animate={{y: 0}}
-                    transition={{duration: 0.5}}
-                >
-                    <button className="button-form" type="submit">Login</button>
-                </motion.div>
+                {isButtonVisible && ( // Renderiza el botón solo si isButtonVisible es true
+                    <motion.div
+                        initial={{ y: 100 }}
+                        animate={{ y: 0 }}
+                        transition={{ duration: 0.5 }}
+                    >
+                        <button
+                            className="button-form"
+                            type="submit"
+                        >
+                            Login
+                        </button>
+                    </motion.div>
+                )}
             </form>
         </motion.div>
     );

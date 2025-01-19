@@ -78,9 +78,9 @@
   z-index: 1000;
 }
 
-.notification-success {
+.modal {
   background-color: #efd6bd;
-  color: #cc8259;
+  color: #000000;
   padding: 2rem;
   border: 1px solid #cc8259;
   border-radius: 0.5rem;
@@ -88,6 +88,16 @@
   width: 90%;
   text-align: center;
   position: relative;
+}
+
+.modal-success {
+  background-color: #62B874;
+  border: 1px solid #62B874;
+}
+
+.modal-error {
+  background-color: #EE506D;
+  border: 1px solid #EE506D;
 }
 
 .close-btn-success {
@@ -103,7 +113,7 @@
 
 /* Formulario */
 form {
-  padding: 5px 20px;
+  padding: 5px 20px 15px 5px;
   border-radius: 10px;
   border: 1px solid #000000;
   background-color: #F0F2F4;
