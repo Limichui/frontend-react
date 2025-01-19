@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    formData: {
+    formLogin: {
         module: 'React Mod7',
         username: '',
         email: '',
@@ -14,11 +14,19 @@ export const formSlice = createSlice({
     initialState,
     reducers: {
         setInitialValue: (state, action) => {
-            state.formData = action.payload
+            state.formLogin = action.payload
         },
+        clearFormData: (state) => {
+            state.formLogin = { 
+                username: '', 
+                email: '', 
+                password: '', 
+                module: '' 
+            };
+        }
     },
 })
 
-export const { setInitialValue } = formSlice.actions
+export const { setInitialValue, clearFormData } = formSlice.actions
 
 export default formSlice.reducer

@@ -27,9 +27,9 @@ const FormWithMotionAndHook = ({titleForm}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (initialValueForm.formData.password === formData.password) {
+        if (initialValueForm.formLogin.password === formData.password) {
             dispatch(setInitialValue({
-                ...initialValueForm.formData,
+                ...initialValueForm.formLogin,
                 username: formData.username,
                 email: formData.email
             }));
@@ -83,7 +83,7 @@ const FormWithMotionAndHook = ({titleForm}) => {
                         <input className="input-form"
                             type="text"
                             name="module"
-                            value={initialValueForm.formData.module}
+                            value={initialValueForm.formLogin.module}
                             required
                             disabled
                         />
