@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSelector } from 'react-redux';
 import { motion } from "motion/react";
 import useForm from "../hooks/useForm.js";
 import ModalInfo from "../../components/modals/ModalInfo.jsx";
@@ -8,7 +9,8 @@ const FormWithMotionAndHook = ({titleForm}) => {
 
     const {formData, handleChange} = useForm({
         username: '',
-        email: ''
+        email: '',
+        password: ''
     });
 
     const [showModal, setShowModal] = useState(false);
@@ -16,12 +18,15 @@ const FormWithMotionAndHook = ({titleForm}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setShowModal(true);
-        console.log('datos del formulario', formData);
+        //console.log('datos del formulario', formData);
     };
 
     const onCloseModalInfo = () => {
         setShowModal(false);
     }
+
+    const initialValueForm  = useSelector((state) => state.form);
+    //console.log(initialValueForm);
 
     return (
         <motion.div
@@ -53,12 +58,10 @@ const FormWithMotionAndHook = ({titleForm}) => {
                         <input className="input-form"
                             type="text"
                             name="module"
-                            value={formData.module}
-                            onChange={handleChange}
+                            value={initialValueForm.formData.module}
                             required
                             disabled
                         />
-                        
                     </div>
                 </motion.div>
                 <motion.div
